@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="TaskPilots.TaskAgents.Core/TaskPilots.TaskAgents.Core.csproj" />
+  <Project Path="TaskPilots.TaskAgents.Repositories/TaskPilots.TaskAgents.Repositories.csproj" />
+  <Project Path="TaskPilots.TaskAgents.WebApis.Tests/TaskPilots.TaskAgents.WebApis.Tests.csproj" />
+  <Project Path="TaskPilots.TaskAgents.WebApis.IntegrationTests/TaskPilots.TaskAgents.WebApis.IntegrationTests.csproj" />
+  <Project Path="TaskPilots.TaskAgents.WebApis/TaskPilots.TaskAgents.WebApis.csproj" />
+</Solution>

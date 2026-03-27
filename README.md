@@ -2,6 +2,42 @@
 
 # 互联网分析 Agent 系统设计方案
 
+## 本地启动最小步骤
+
+当前仓库默认以 `InMemory` 模式运行，适合本地初始化与联调。`Postgres`、`pgvector`、`Docker Compose` 和数据库脚本属于后续基础设施阶段，本轮不要求先接入。
+
+### 1. 启动后端
+
+```bash
+dotnet run --project TaskPilots.TaskAgents.WebApis
+```
+
+默认开发地址沿用 `TaskPilots.TaskAgents.WebApis/Properties/launchSettings.json` 中的 `http://localhost:5131`。
+
+### 2. 启动前端开发模式
+
+```bash
+pnpm --dir taskagentsweb install
+pnpm --dir taskagentsweb dev
+```
+
+前端开发服务器会把 `/api/*` 和 `/agent-hub` 代理到 `http://localhost:5131`，因此不需要额外修改前端接口地址。
+
+### 3. 构建并发布前端到后端静态目录
+
+```bash
+pnpm --dir taskagentsweb build
+```
+
+构建完成后，前端产物会自动复制到 `TaskPilots.TaskAgents.WebApis/wwwroot`，后端可直接静态托管管理控制台。
+
+### 4. 验证
+
+```bash
+dotnet test TaskPilots.TaskAgents.slnx
+pnpm --dir taskagentsweb test
+```
+
 ## 1. 项目概述
 
 本项目目标是构建一个**独立部署、长期运行、可审计、可审批、半自主执行**的互联网分析 Agent 系统。
